@@ -24,6 +24,12 @@ expense_questions = [
         "message":"New Expense - Spender: ",
         "choices": get_spender_choices()
     },
+    {
+        "type":"checkbox",
+        "name":"split",
+        "message":"New Expense - People Involved: ",
+        "choices": [ {"name":x, "checked":True} for x in get_spender_choices()]
+    }
 ]
 
 def new_expense(*args):
@@ -34,7 +40,11 @@ def new_expense(*args):
         amount = infos.get("amount")
         label = infos.get("label")
         spender = infos.get("spender")
-        reader.writerow([amount,label,spender])
+        split = infos.get("split")
+        for user in split:
+            print("Adding " + user + " to expense report")
+
+        reader.writerow([amount,label,spender, split])
 
     print("Expense Added !")
     return True
