@@ -32,12 +32,15 @@ def balance():
     for user in balance_per_user:
         print(f"{user}: {balance_per_user[user]}")
 
+    return balance_per_user
 
-            
-
+def money_due(bpu):
+    # allows user to see how much money they owe and to whom
+    return
 
 def display_status(*args):
-    balance()
+    balance_per_user = balance()
+    money_due_per_user = money_due(balance_per_user)
     return True
 
 
