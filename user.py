@@ -18,7 +18,7 @@ user_questions = [
 def add_user():
     infos = prompt(user_questions)
 
-    with open("users.csv", "w", newline="") as f:
+    with open("users.csv", "a", newline="") as f:
         reader = csv.writer(f)
         name = infos.get("name")
         email = infos.get("email")
