@@ -1,5 +1,7 @@
 from PyInquirer import prompt
 
+import csv
+
 expense_questions = [
     {
         "type":"input",
@@ -23,7 +25,14 @@ expense_questions = [
 
 def new_expense(*args):
     infos = prompt(expense_questions)
-    # Writing the informations on external file might be a good idea ¯\_(ツ)_/¯
+
+    with open("expense_report.csv", "w", newline="") as f:
+        reader = csv.writer(f)
+        amount = infos.get("amount")
+        label = infos.get("label")
+        spender = infos.get("spender")
+        reader.writerow([amount,label,spender])
+
     print("Expense Added !")
     return True
 
